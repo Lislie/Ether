@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="container">
+    <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+    <div class="page-header">
+
+    </div>
+
+    <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+    <div class="content">
+
+
+        <button type="button" class="btn btn-primary">Primary</button>
+        <button type="button" class="btn btn-primary">Primary</button>
+        <button type="button" class="btn btn-primary">Primary</button>
+
+    </div>
+
+    <!-- Columns are always 50% wide, on mobile and desktop -->
+    <div class="row">
+
+    </div>
+
+</div>
+
+<form action="somepage.asp">
+
+    <input type="text" value="0" name="txt1"/>
+    <input type="button" value="开始" name="btnStart"/>
+    <input type="button" value="重置" name="btnReset"/>
+</form>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+    var txt = document.forms[0].elements['txt1'];
+    //document.forms;  表单集合
+    //forms[0];  集合里的第一个form
+    //form.elements; 表单里的所有表单元素
+    //elements['txt1'];  获取name属性为txt1的表单元素
+    //.checked = true;  设置checked属性为true
+
+    var btnStart = document.forms[0].elements['btnStart'];
+
+    var btnReset = document.forms[0].elements['btnReset'];
+
+    var id; //定时器id
+
+    var seed = 10000; //速度
+
+    btnStart.onclick = function () {
+        if (this.value == '开始'){//根据按钮文本来判断当前操作
+
+            this.value = '停止'; //使按钮文本变为停止
+
+            btnReset.disabled = true; //使重置按钮不可用
+
+            id = window.setInterval(tip,10);//设置定时器，每0.01s跳一次
+        }else {
+            this.value = '开始';//使文本按钮变为开始
+
+            btnReset.disabled = false;//使重置按钮可用
+
+            window.clearInterval(id)//取消定时
+        }
+    };
+    btnReset.onclick =function () {
+        seed = 0 ; //重置按钮
+    }
+    function tip() {
+        seed--;//让秒表跳一格
+        txt.value = seed/100;
+        if (txt.value == 0){
+            alert('game over')
+            window.clearInterval(id)
+        }
+    }
+</script>
+</body>
+
+
+</html>
